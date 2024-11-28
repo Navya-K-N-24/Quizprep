@@ -1,8 +1,8 @@
-const question = document.querySelector('#question');
-const choices = Array.from(document.querySelectorAll('.choice-text'));
-const progressText = document.querySelector('#progressText');
-const scoreText = document.querySelector('#score');
-const progressBarFull = document.querySelector('#progressBarFull');
+const question = document.querySelector('#question')
+const choices = Array.from(document.querySelectorAll('.choice-text'))
+const progressText = document.querySelector('#progressText')
+const scoreText = document.querySelector('#score')
+const progressBarFull = document.querySelector('#progressBarFull')
 
 let currentQuestion = {}
 let acceptingAnswers = true
@@ -12,28 +12,28 @@ let availableQuestions = []
 
 let questions = [
     {
-        question: 'What is 2+2',
+        question: 'What is 2 + 2',
         choice1: '2',
         choice2: '3',
         choice3: '4',
         choice4: '5',
     },
     {
-        question: 'What is 2+5',
+        question: 'What is 2 + 5',
         choice1: '2',
         choice2: '3',
         choice3: '7',
         choice4: '5',
     },
     {
-        question: 'What is 8+2',
+        question: 'What is 8 + 2',
         choice1: '2',
         choice2: '10',
         choice3: '4',
         choice4: '5',
     },
     {
-        question: 'What is 12+2',
+        question: 'What is 12 + 2',
         choice1: '2',
         choice2: '3',
         choice3: '4',
@@ -42,25 +42,25 @@ let questions = [
 ]
 
 const SCORE_POINTS = 100
-const MAX_QUESTIONS =4
+const MAX_QUESTIONS = 4
 
 startGame = () => {
     questionCounter = 0
     score = 0
-    availableQuestions = [...question]
+    availableQuestions = [...questions]
     getNewQuestion()
 }
 
 getNewQuestion = () => {
     if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
-        localStorage.setItem('mostRecentStore', score)
+        localStorage.setItem('mostRecentStore', score);
 
         return window.location.assign('/end.html')
     }
 
     questionCounter++
     progressText.innerText = `Question ${questionCounter} of ${MAX_QUESTIONS}`
-    progressBarFull.computedStyleMap.width = `${(questionCounter/MAX_QUESTIONS) * 100}%`
+    progressBarFull.style.width = `${(questionCounter/MAX_QUESTIONS) * 100}%`
 
     const questionsIndex = Math.floor(Math.random() * availableQuestions.length)
     currentQuestion = availableQuestions[questionsIndex]
@@ -73,21 +73,21 @@ getNewQuestion = () => {
 
     availableQuestions.splice(questionsIndex, 1)
 
-    acceptingAnswers = true
+    acceptingAnswers = true;
 }
 
 choices.forEach(choice => {
     choice.addEventListener('click', e => {
         if (!acceptingAnswers) return
 
-        acceptingAnswers = false
-        const selectedChoice = e.target
+        acceptingAnswers = false;
+        const selectedChoice = e.target;
         const selectedAnswer = selectedChoice.dataset['number']
 
         let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' :
         'incorrect'
 
-        if(classToApply === 'correct') {
+        if (classToApply === 'correct') {
             incrementScore(SCORE_POINTS)
         }
 
@@ -102,6 +102,9 @@ choices.forEach(choice => {
 })
 
 incrementScore = num => {
-    score+=num
+    score +=num
     scoreText.innerText = score
 }
+
+startGame()
+
