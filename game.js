@@ -12,25 +12,28 @@ let availableQuestions = []
 
 let questions = [
     {
-        question: 'What is 2 + 2',
+        question: 'What is 2 + 2?',
         choice1: '2',
         choice2: '3',
         choice3: '4',
         choice4: '5',
+        answer: 3,
     },
     {
-        question: 'What is 2 + 5',
+        question: 'What is 2 + 5?',
         choice1: '2',
-        choice2: '3',
-        choice3: '7',
+        choice2: '7',
+        choice3: '9',
         choice4: '5',
+        answer: 2,
     },
     {
-        question: 'What is 8 + 2',
-        choice1: '2',
-        choice2: '10',
+        question: 'What is 8 + 2?',
+        choice1: '10',
+        choice2: '12',
         choice3: '4',
         choice4: '5',
+        answer: 1,
     },
     {
         question: 'What is 12 + 2',
@@ -38,7 +41,8 @@ let questions = [
         choice2: '3',
         choice3: '4',
         choice4: '14',
-    },
+        answer: 4,
+    }
 ]
 
 const SCORE_POINTS = 100
@@ -52,8 +56,8 @@ startGame = () => {
 }
 
 getNewQuestion = () => {
-    if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
-        localStorage.setItem('mostRecentStore', score);
+    if (availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
+        localStorage.setItem('mostRecentScore', score);
 
         return window.location.assign('/end.html')
     }
@@ -84,8 +88,7 @@ choices.forEach(choice => {
         const selectedChoice = e.target;
         const selectedAnswer = selectedChoice.dataset['number']
 
-        let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' :
-        'incorrect'
+        let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
 
         if (classToApply === 'correct') {
             incrementScore(SCORE_POINTS)
@@ -93,7 +96,7 @@ choices.forEach(choice => {
 
         selectedChoice.parentElement.classList.add(classToApply)
 
-        setTimeout (() => {
+        setTimeout(() => {
             selectedChoice.parentElement.classList.remove(classToApply)
             getNewQuestion()
 
