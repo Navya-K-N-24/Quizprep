@@ -12,20 +12,20 @@ let availableQuestions = []
 
 let questions = [
     {
-        question: 'What is 2 + 2?',
-        choice1: '2',
-        choice2: '3',
-        choice3: '4',
-        choice4: '5',
-        answer: 3,
+        question: 'Which of the following HTML elements is used to define the navigation links in a webpage?',
+        choice1: '<nav>',
+        choice2: '<links>',
+        choice3: '<header>',
+        choice4: '<section>',
+        answer: 1,
     },
     {
-        question: 'What is 2 + 5?',
-        choice1: '2',
-        choice2: '7',
-        choice3: '9',
-        choice4: '5',
-        answer: 2,
+        question: 'Which HTML tag is used to define a form for user input?',
+        choice1: '<form>',
+        choice2: '<inpuit>',
+        choice3: '<fieldset>',
+        choice4: '<label>',
+        answer: 1,
     },
     {
         question: 'What is 8 + 2?',
